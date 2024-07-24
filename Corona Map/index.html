@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <title>Covid 19 Cases Map</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        #map {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            z-index: 0;
+        }
+
+        section {
+            position: absolute;
+            height: 220px;
+            width: 250px;
+            top: 10px;
+            right: 10px;
+            padding: 10px;
+            color: white;
+            background-color: black;
+            font-family: Arial, sans-serif;
+            z-index: 1;
+        }
+
+        .color-box {
+            display: inline-block;
+            width: 13px;
+            height: 13px;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+
+        .pink {
+            background-color: pink;
+        }
+        .coral {
+            background-color: lightcoral;
+        }
+        .darkred {
+            background-color: darkred;
+        }
+        .red {
+            background-color: red;
+        }
+
+        @media (max-width: 1000px) {
+            section {
+                height: 180px;
+                width: 200px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            section {
+                height: 160px;
+                width: 180px;
+            }
+        }
+
+        @media (max-width: 450px) {
+            section {
+                height: 140px;
+                width: 160px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <h2>Color Key</h2>
+        <p><span class="color-box pink"></span>Deaths: 0-999 (Pink)</p>
+        <p><span class="color-box coral"></span>Deaths: 1000-2999 (Coral)</p>
+        <p><span class="color-box darkred"></span>Deaths: 3000-4999 (Dark Red)</p>
+        <p><span class="color-box red"></span>Deaths: 5000+ (Red)</p>
+    </section>
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([20, 0], 2.5);
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 19
+        }).addTo(map);
+    </script>
+    <script src="index.js"></script>
+</body>
+
+</html>
